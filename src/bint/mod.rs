@@ -32,7 +32,6 @@ use core::default::Default;
 
 use core::iter::{Iterator, Product, Sum};
 
-#[cfg(feature = "fuzzing")]
 use arbitrary::Arbitrary;
 
 macro_rules! mod_impl {
@@ -50,7 +49,7 @@ macro_rules! mod_impl {
 		#[allow(clippy::derive_hash_xor_eq)]
 		#[derive(Clone, Copy, Hash)]
 		#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-		#[cfg_attr(feature = "fuzzing", derive(Arbitrary))]
+		#[derive(Arbitrary)]
 		pub struct $BInt<const N: usize> {
 			pub(crate) bits: $BUint<N>,
 		}
